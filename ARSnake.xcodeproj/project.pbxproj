@@ -20,6 +20,8 @@
 		4049FC211F337F0200C03E1E /* SnakeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC201F337F0200C03E1E /* SnakeScene.swift */; };
 		4049FC231F337F6D00C03E1E /* TetrisEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC221F337F6D00C03E1E /* TetrisEngine.swift */; };
 		4049FC251F337FD900C03E1E /* SnakeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC241F337FD900C03E1E /* SnakeState.swift */; };
+		4049FC271F35BD2300C03E1E /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC261F35BD2300C03E1E /* MessageManager.swift */; };
+		4049FC291F36174D00C03E1E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC281F36174D00C03E1E /* Plane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		4049FC201F337F0200C03E1E /* SnakeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeScene.swift; sourceTree = "<group>"; };
 		4049FC221F337F6D00C03E1E /* TetrisEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrisEngine.swift; sourceTree = "<group>"; };
 		4049FC241F337FD900C03E1E /* SnakeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeState.swift; sourceTree = "<group>"; };
+		4049FC261F35BD2300C03E1E /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		4049FC281F36174D00C03E1E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				4049FC201F337F0200C03E1E /* SnakeScene.swift */,
 				4049FC221F337F6D00C03E1E /* TetrisEngine.swift */,
 				4049FC241F337FD900C03E1E /* SnakeState.swift */,
+				4049FC261F35BD2300C03E1E /* MessageManager.swift */,
+				4049FC281F36174D00C03E1E /* Plane.swift */,
 			);
 			path = ARSnake;
 			sourceTree = "<group>";
@@ -276,12 +282,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4049FBF11F31F9F700C03E1E /* ViewController.swift in Sources */,
+				4049FC291F36174D00C03E1E /* Plane.swift in Sources */,
 				4049FC1F1F337E9200C03E1E /* SnakeGround.swift in Sources */,
 				4049FC231F337F6D00C03E1E /* TetrisEngine.swift in Sources */,
 				4049FBED1F31F9F700C03E1E /* AppDelegate.swift in Sources */,
 				4049FC211F337F0200C03E1E /* SnakeScene.swift in Sources */,
 				4049FC1D1F337DCB00C03E1E /* SnakeConfig.swift in Sources */,
 				4049FC251F337FD900C03E1E /* SnakeState.swift in Sources */,
+				4049FC271F35BD2300C03E1E /* MessageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

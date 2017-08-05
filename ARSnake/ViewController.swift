@@ -13,29 +13,36 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+//    @IBOutlet weak var messagePanel: UIView!
+    
     var snakeEngine:SnakeEngine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the view's delegate
+        
         sceneView.delegate = self
         
-        // Create a new scene
-//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // 存放所有 3D 几何体的容器
+        let scene = SCNScene()
         
-        // Set the scene to the view
-        let line = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
-        let matrix = SCNMatrix4Translate(SCNMatrix4MakeTranslation(1 - 0.5, 0, 0 - 0.5), 0.001 / 2, 0.001 / 2, -0.001 / 2)
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.red
-        // use the same material for all geometry elements
-        line.firstMaterial = material
-        let node = SCNNode(geometry: line)
-        node.transform = matrix
-        sceneView.scene.rootNode.addChildNode(node)
-//        sceneView.scene = scene
-        sceneView.automaticallyUpdatesLighting = true
+        // 想要绘制的 3D 立方体
+        let boxGeometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.0)
+        
+        // 将几何体包装为 node 以便添加到 scene
+        let boxNode = SCNNode(geometry: boxGeometry)
+        
+        // 把 box 放在摄像头正前方
+        boxNode.position = SCNVector3Make(0, 0, -0.5)
+        
+        // rootNode 是一个特殊的 node，它是所有 node 的起始点
+        scene.rootNode.addChildNode(boxNode)
+        sceneView.scene = scene
+//        sceneView.automaticallyUpdatesLighting = true
+        sceneView.autoenablesDefaultLighting = true
+        
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +51,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARWorldTrackingSessionConfiguration()
         
+        configuration.planeDetection = .horizontal
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -63,22 +71,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        // We need async execution to get anchor node's position relative to the root
-        DispatchQueue.main.async {
-//            if let planeAnchor = anchor as? ARPlaneAnchor {
-                // For a first detected plane
-//                if (self.snakeEngine == nil) {
-//                    // get center of the plane
-//                    let x = planeAnchor.center.x + node.position.x
-//                    let y = planeAnchor.center.y + node.position.y
-//                    let z = planeAnchor.center.z + node.position.z
-//                    // initialize Tetris with a well placed on this plane
-//                    let config = SnakeConfig.standard
-//                    let ground = SnakeGround(config)
-//                    let scene = SnakeScene(config, self.sceneView.scene, x, y, z)
-//                    self.snakeEngine = SnakeEngine(config, ground, scene)
-//                }
-//            }
+        print("BBBBBBBBBBBBBBBB")
+        if let anchor = anchor as? ARPlaneAnchor {
+            print("CCCCCCCCCCCCCCC")
+            let plane = Plane(withAnchor: anchor)
+            node.addChildNode(plane)
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        // 查看此平面当前是否正在渲染
+//        guard let plane = planes[anchor.identifier] else {
+//            return
+//        }
+//
+//        plane.update(anchor: anchor as! ARPlaneAnchor)
+    }
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        case .notAvailable:
+            print("AAAAAAAAAA: 不可用")
+        case .limited:
+            print("AAAAAAAAAAAA: 受限")
+        case .normal:
+            print("AAAAAAAAAA: 正常")
         }
     }
     
