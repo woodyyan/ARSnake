@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    var snakeEngine:SnakeEngine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +21,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-        sceneView.scene = scene
+        let line = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
+        let matrix = SCNMatrix4Translate(SCNMatrix4MakeTranslation(1 - 0.5, 0, 0 - 0.5), 0.001 / 2, 0.001 / 2, -0.001 / 2)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.red
+        // use the same material for all geometry elements
+        line.firstMaterial = material
+        let node = SCNNode(geometry: line)
+        node.transform = matrix
+        sceneView.scene.rootNode.addChildNode(node)
+//        sceneView.scene = scene
+        sceneView.automaticallyUpdatesLighting = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,14 +62,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        // We need async execution to get anchor node's position relative to the root
+        DispatchQueue.main.async {
+//            if let planeAnchor = anchor as? ARPlaneAnchor {
+                // For a first detected plane
+//                if (self.snakeEngine == nil) {
+//                    // get center of the plane
+//                    let x = planeAnchor.center.x + node.position.x
+//                    let y = planeAnchor.center.y + node.position.y
+//                    let z = planeAnchor.center.z + node.position.z
+//                    // initialize Tetris with a well placed on this plane
+//                    let config = SnakeConfig.standard
+//                    let ground = SnakeGround(config)
+//                    let scene = SnakeScene(config, self.sceneView.scene, x, y, z)
+//                    self.snakeEngine = SnakeEngine(config, ground, scene)
+//                }
+//            }
+        }
     }
-*/
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
