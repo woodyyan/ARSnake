@@ -63,6 +63,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let ground = SnakeGround(with: planeAnchor, SnakeConfig.standard)
                 node.addChildNode(ground)
                 
+                let cellWidth = CGFloat(SnakeConfig.standard.cellWidth)
+                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: 0)
+                let boxNode = SCNNode(geometry: box)
+                boxNode.position = ground.getRandomPosition()
+                node.addChildNode(boxNode)
+                
                 isAdded = true
             }
         }
