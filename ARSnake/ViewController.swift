@@ -71,11 +71,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
         case .notAvailable:
-            print("AAAAAAAAAA: 不可用")
+            print("不可用")
         case .limited:
-            print("AAAAAAAAAAAA: 受限")
+            print("受限")
         case .normal:
-            print("AAAAAAAAAA: 正常")
+            print("正常")
         }
     }
     
