@@ -57,14 +57,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let planeAnchor = anchor as? ARPlaneAnchor {
             if !isAdded{
-                let plane = Plane(withAnchor: planeAnchor)
-                node.addChildNode(plane)
+//                let plane = Plane(withAnchor: planeAnchor)
+//                node.addChildNode(plane)
                 
                 let ground = SnakeGround(with: planeAnchor, SnakeConfig.standard)
                 node.addChildNode(ground)
                 
                 let cellWidth = CGFloat(SnakeConfig.standard.cellWidth)
-                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: 0)
+                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: cellWidth / 10)
+                box.firstMaterial?.diffuse.contents = SnakeConfig.standard.colors[1]
                 let boxNode = SCNNode(geometry: box)
                 boxNode.position = ground.getRandomPosition()
                 node.addChildNode(boxNode)
