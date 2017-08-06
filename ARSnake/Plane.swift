@@ -21,10 +21,8 @@ class Plane: SCNNode {
         self.anchor = anchor
         planeGeometry = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
         
-        // 相比把网格视觉化为灰色平面，我更喜欢用科幻风的颜色来渲染
         let material = SCNMaterial()
-//        let img = UIImage(named: "fabric")
-//        material.diffuse.contents = img
+        material.diffuse.contents = UIColor.blue
         material.lightingModel = .physicallyBased
         planeGeometry.materials = [material]
         
