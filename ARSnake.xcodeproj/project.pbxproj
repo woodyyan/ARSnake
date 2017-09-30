@@ -16,9 +16,11 @@
 		4049FC041F31F9F700C03E1E /* ARSnakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC031F31F9F700C03E1E /* ARSnakeTests.swift */; };
 		4049FC0F1F31F9F700C03E1E /* ARSnakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC0E1F31F9F700C03E1E /* ARSnakeUITests.swift */; };
 		4049FC1D1F337DCB00C03E1E /* SnakeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC1C1F337DCB00C03E1E /* SnakeConfig.swift */; };
-		4049FC1F1F337E9200C03E1E /* SnakeGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC1E1F337E9200C03E1E /* SnakeGround.swift */; };
+		4049FC1F1F337E9200C03E1E /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC1E1F337E9200C03E1E /* Ground.swift */; };
 		4049FC271F35BD2300C03E1E /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC261F35BD2300C03E1E /* MessageManager.swift */; };
 		4049FC291F36174D00C03E1E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC281F36174D00C03E1E /* Plane.swift */; };
+		828F1EE11F3759BD00BCC01E /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F1EE01F3759BD00BCC01E /* Snake.swift */; };
+		828F1EE31F3759EE00BCC01E /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F1EE21F3759EE00BCC01E /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +56,11 @@
 		4049FC0E1F31F9F700C03E1E /* ARSnakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSnakeUITests.swift; sourceTree = "<group>"; };
 		4049FC101F31F9F700C03E1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4049FC1C1F337DCB00C03E1E /* SnakeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeConfig.swift; sourceTree = "<group>"; };
-		4049FC1E1F337E9200C03E1E /* SnakeGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGround.swift; sourceTree = "<group>"; };
+		4049FC1E1F337E9200C03E1E /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		4049FC261F35BD2300C03E1E /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		4049FC281F36174D00C03E1E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		828F1EE01F3759BD00BCC01E /* Snake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
+		828F1EE21F3759EE00BCC01E /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +119,11 @@
 				4049FBF71F31F9F700C03E1E /* LaunchScreen.storyboard */,
 				4049FBFA1F31F9F700C03E1E /* Info.plist */,
 				4049FC1C1F337DCB00C03E1E /* SnakeConfig.swift */,
-				4049FC1E1F337E9200C03E1E /* SnakeGround.swift */,
+				4049FC1E1F337E9200C03E1E /* Ground.swift */,
 				4049FC261F35BD2300C03E1E /* MessageManager.swift */,
 				4049FC281F36174D00C03E1E /* Plane.swift */,
+				828F1EE01F3759BD00BCC01E /* Snake.swift */,
+				828F1EE21F3759EE00BCC01E /* Food.swift */,
 			);
 			path = ARSnake;
 			sourceTree = "<group>";
@@ -273,10 +279,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4049FBF11F31F9F700C03E1E /* ViewController.swift in Sources */,
+				828F1EE31F3759EE00BCC01E /* Food.swift in Sources */,
 				4049FC291F36174D00C03E1E /* Plane.swift in Sources */,
-				4049FC1F1F337E9200C03E1E /* SnakeGround.swift in Sources */,
+				4049FC1F1F337E9200C03E1E /* Ground.swift in Sources */,
 				4049FBED1F31F9F700C03E1E /* AppDelegate.swift in Sources */,
 				4049FC1D1F337DCB00C03E1E /* SnakeConfig.swift in Sources */,
+				828F1EE11F3759BD00BCC01E /* Snake.swift in Sources */,
 				4049FC271F35BD2300C03E1E /* MessageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

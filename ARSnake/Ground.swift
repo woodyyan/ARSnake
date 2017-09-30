@@ -10,7 +10,7 @@ import SceneKit
 import ARKit
 
 /** Snake ground model */
-class SnakeGround : SCNNode {
+class Ground : SCNNode {
     
     var config:SnakeConfig!
     

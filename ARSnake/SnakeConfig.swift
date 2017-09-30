@@ -16,7 +16,7 @@ struct SnakeConfig {
     let length: Int
     let cellWidth:Float = 0.1
     let lingWidth:Float = 0.001
-    let groundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+    let groundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)//(red: 0, green: 0, blue: 0, alpha: 0.3)
     let colors : [UIColor] = [
         UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0),
         UIColor(red:1.00, green:0.18, blue:0.33, alpha:1.0),

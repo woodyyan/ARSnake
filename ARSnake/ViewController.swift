@@ -31,7 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingSessionConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
         
         configuration.planeDetection = .horizontal
         // Run the view's session
@@ -60,15 +60,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                let plane = Plane(withAnchor: planeAnchor)
 //                node.addChildNode(plane)
                 
-                let ground = SnakeGround(with: planeAnchor, SnakeConfig.standard)
+                let ground = Ground(with: planeAnchor, SnakeConfig.standard)
                 node.addChildNode(ground)
                 
-                let cellWidth = CGFloat(SnakeConfig.standard.cellWidth)
-                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: cellWidth / 10)
-                box.firstMaterial?.diffuse.contents = SnakeConfig.standard.colors[1]
-                let boxNode = SCNNode(geometry: box)
-                boxNode.position = ground.getRandomPosition()
-                node.addChildNode(boxNode)
+                let food = Food(with: ground.getRandomPosition(), SnakeConfig.standard)
+                node.addChildNode(food)
+                
+//                let cellWidth = CGFloat(SnakeConfig.standard.cellWidth)
+//                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: cellWidth / 10)
+//                box.firstMaterial?.diffuse.contents = SnakeConfig.standard.colors[1]
+//                let boxNode = SCNNode(geometry: box)
+//                boxNode.position = ground.getRandomPosition()
+//                node.addChildNode(boxNode)
+                let snake = Snake(with: ground.getRandomPosition(), SnakeConfig.standard)
+                node.addChildNode(snake)
                 
                 isAdded = true
             }
