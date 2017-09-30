@@ -12,6 +12,8 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    var snake:Snake!
+    
     @IBOutlet var sceneView: ARSCNView!
 //    @IBOutlet weak var messagePanel: UIView!
     
@@ -57,8 +59,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let planeAnchor = anchor as? ARPlaneAnchor {
             if !isAdded{
-//                let plane = Plane(withAnchor: planeAnchor)
-//                node.addChildNode(plane)
                 
                 let ground = Ground(with: planeAnchor, SnakeConfig.standard)
                 node.addChildNode(ground)
@@ -66,18 +66,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let food = Food(with: ground.getRandomPosition(), SnakeConfig.standard)
                 node.addChildNode(food)
                 
-//                let cellWidth = CGFloat(SnakeConfig.standard.cellWidth)
-//                let box = SCNBox(width: cellWidth, height: cellWidth, length: cellWidth, chamferRadius: cellWidth / 10)
-//                box.firstMaterial?.diffuse.contents = SnakeConfig.standard.colors[1]
-//                let boxNode = SCNNode(geometry: box)
-//                boxNode.position = ground.getRandomPosition()
-//                node.addChildNode(boxNode)
-                let snake = Snake(with: ground.getRandomPosition(), SnakeConfig.standard)
+                snake = Snake(with: ground.getRandomPosition(), SnakeConfig.standard)
                 node.addChildNode(snake)
+                
+                startTimer()
                 
                 isAdded = true
             }
         }
+    }
+    
+    private func startTimer(){
+        DispatchQueue.main.async {
+            _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func update() {
+        snake.move(to: .Forward)
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {

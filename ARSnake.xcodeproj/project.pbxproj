@@ -19,6 +19,7 @@
 		4049FC1F1F337E9200C03E1E /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC1E1F337E9200C03E1E /* Ground.swift */; };
 		4049FC271F35BD2300C03E1E /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC261F35BD2300C03E1E /* MessageManager.swift */; };
 		4049FC291F36174D00C03E1E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4049FC281F36174D00C03E1E /* Plane.swift */; };
+		821DA9E41F7F84E0001D7CE2 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 821DA9E31F7F84E0001D7CE2 /* .travis.yml */; };
 		828F1EE11F3759BD00BCC01E /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F1EE01F3759BD00BCC01E /* Snake.swift */; };
 		828F1EE31F3759EE00BCC01E /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F1EE21F3759EE00BCC01E /* Food.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		4049FC1E1F337E9200C03E1E /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		4049FC261F35BD2300C03E1E /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		4049FC281F36174D00C03E1E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		821DA9E31F7F84E0001D7CE2 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		828F1EE01F3759BD00BCC01E /* Snake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 		828F1EE21F3759EE00BCC01E /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 		4049FBE01F31F9F700C03E1E = {
 			isa = PBXGroup;
 			children = (
+				821DA9E31F7F84E0001D7CE2 /* .travis.yml */,
 				4049FBEB1F31F9F700C03E1E /* ARSnake */,
 				4049FC021F31F9F700C03E1E /* ARSnakeTests */,
 				4049FC0D1F31F9F700C03E1E /* ARSnakeUITests */,
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821DA9E41F7F84E0001D7CE2 /* .travis.yml in Resources */,
 				4049FBEF1F31F9F700C03E1E /* art.scnassets in Resources */,
 				4049FBF91F31F9F700C03E1E /* LaunchScreen.storyboard in Resources */,
 				4049FBF61F31F9F700C03E1E /* Assets.xcassets in Resources */,
