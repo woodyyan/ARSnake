@@ -27,6 +27,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         sceneView.autoenablesDefaultLighting = true
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        
+        addGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+    }
+    
+    private func addGestures() {
+        let swiftLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        swiftLeft.direction = .left
+        self.view.addGestureRecognizer(swiftLeft)
+        
+        let swiftRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        swiftRight.direction = .right
+        self.view.addGestureRecognizer(swiftRight)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .left) {
+            snake.direction = .Left
+        } else if (sender.direction == .right) {
+            snake.direction = .Right
+        }
+    }
+    
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+        print("tap")
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +110,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func update() {
-        snake.move(to: .Forward)
+        snake.move()
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {

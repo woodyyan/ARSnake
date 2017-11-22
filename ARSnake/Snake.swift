@@ -11,7 +11,10 @@ import ARKit
 
 class Snake : SCNNode {
     var bodies:[SCNNode] = [SCNNode]()
+    var direction = Direction.Forward
     var config:SnakeConfig!
+    
+    private var movementStatus = MovementStatus.None
     
     init(with position: SCNVector3, _ config: SnakeConfig) {
         super.init()
@@ -24,8 +27,17 @@ class Snake : SCNNode {
         super.init(coder: aDecoder)
     }
     
-    func move(to direction:Direction){
-        switch direction {
+    enum MovementStatus {
+        case None
+        case AddingX
+        case AddingZ
+        case SubtractingX
+        case SubtractingZ
+    }
+    
+    func move(){
+        // 蛇的方向可由前两个节点决定，两个节点能形成一条线，左转永远是往线的左边走，右转永远往线的右边走
+        switch direction{
         case .Forward:
             moveForward()
         case .Left:
@@ -33,24 +45,76 @@ class Snake : SCNNode {
         case .Right:
             moveRight()
         }
+        direction = .Forward
+    }
+    
+    private func moveRight(){
+        let firstBody = bodies[0]
+        let secondBody = bodies[1]
+        let firstX = firstBody.position.x
+        let firstY = firstBody.position.y
+        let firstZ = firstBody.position.z
+        let secondX = secondBody.position.x
+        let secondZ = secondBody.position.z
+        
+        if firstX == secondX{
+            let cell:Float = secondZ - firstZ
+            position = SCNVector3.init(firstX + cell, firstY, firstZ)
+            movePosition(newPosition: position)
+        } else{
+            let cell:Float = secondX - firstX
+            position = SCNVector3.init(firstX, firstY, firstZ - cell)
+            movePosition(newPosition: position)
+        }
+    }
+    
+    private func moveLeft(){
+        let firstBody = bodies[0]
+        let secondBody = bodies[1]
+        let firstX = firstBody.position.x
+        let firstY = firstBody.position.y
+        let firstZ = firstBody.position.z
+        let secondX = secondBody.position.x
+        let secondZ = secondBody.position.z
+        
+        if firstX == secondX{
+            let cell:Float = secondZ - firstZ
+            position = SCNVector3.init(firstX - cell, firstY, firstZ)
+            movePosition(newPosition: position)
+        } else{
+            let cell:Float = secondX - firstX
+            position = SCNVector3.init(firstX, firstY, firstZ + cell)
+            movePosition(newPosition: position)
+        }
     }
     
     private func moveForward(){
-        let firstPostion = bodies[0].position
-        var position = SCNVector3.init(firstPostion.x + config.cellWidth, firstPostion.y, firstPostion.z)
+        let firstBody = bodies[0]
+        let secondBody = bodies[1]
+        let firstX = firstBody.position.x
+        let firstY = firstBody.position.y
+        let firstZ = firstBody.position.z
+        let secondX = secondBody.position.x
+        let secondZ = secondBody.position.z
+        
+        if firstX == secondX{
+            let cell:Float = secondZ - firstZ
+            position = SCNVector3.init(firstX, firstY, firstZ - cell)
+            movePosition(newPosition: position)
+        } else{
+            let cell:Float = secondX - firstX
+            position = SCNVector3.init(firstX - cell, firstY, firstZ)
+            movePosition(newPosition: position)
+        }
+    }
+    
+    private func movePosition(newPosition:SCNVector3){
+        var position = newPosition
         for body in bodies{
             let currentPosition = body.position
             body.position = position
             position = currentPosition
         }
-    }
-    
-    private func moveLeft(){
-        
-    }
-    
-    private func moveRight(){
-        
     }
     
     private func createSnake(with position: SCNVector3){
